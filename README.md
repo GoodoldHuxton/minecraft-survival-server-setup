@@ -34,17 +34,17 @@ test suite with real Minecraft clients.
 
 **Server list (MOTD)**
 
-```
-          ✦ FULGHEN SURVIVAL ✦
-     Survival • Community • No P2W
-```
+![Server list MOTD](screenshots/motd.png)
 
-**Joining:** vanilla `Acid joined the game` becomes
+**Joining:** vanilla `Acid joined the game` becomes a custom welcome, a first-join announcement,
+a welcome MOTD with the main commands, and a starter kit (tools, food, torches and a golden
+shovel for claiming land). On the right: the sidebar scoreboard. Behind: a spawn hologram.
 
-```
-✦ Welcome Acid to Fulghen Survival!
-✦ Acid joined for the first time! Say hi!        (first join only, plus a starter kit)
-```
+![Join messages, MOTD and scoreboard](screenshots/join.png)
+
+**Tab list**: server name, online count, rank, ping, rank prefixes and the server address.
+
+![Tab list](screenshots/tab.png)
 
 **Chat**
 
@@ -52,20 +52,9 @@ test suite with real Minecraft clients.
 [VIP] Acid » hello boys
 ```
 
-**Tab list**
+**Discord**: chat, joins, leaves, deaths and advancements are bridged both ways with DiscordSRV.
 
-```
-FULGHEN SURVIVAL
-Survival • Community • No P2W
-
-Online: 12
-Rank: Member
-Ping: 31ms
-
-play.example.com
-```
-
-**Sidebar scoreboard**: player name, rank, ping, online and staff count (toggle with `/sb`).
+![Discord bridge](screenshots/discord.png)
 
 **Spawn**: a small, clean sky island with gardens, lanterns and holograms for getting started and
 the rules, built entirely from console commands. Warps: `/spawn`, `/warp wild`, `/warp nether`,
@@ -156,7 +145,7 @@ real bot clients join, get ranks and try what each rank should and should not do
 | Grief → griefed blocks restored with `/co rollback`; claimed land protected? | ✅ |
 | Server restart → ranks, homes and block logs kept? | ✅ |
 | Backup → zip actually created, with the world inside, while the server runs? | ✅ |
-| Discord → messages delivered? | Configured; needs your bot token |
+| Discord → messages delivered both ways (startup, joins, chat, Discord → game)? | ✅ (checked by hand with a real bot) |
 
 **29/29 passing.** Full output and the bugs the tests caught: [docs/TESTING.md](docs/TESTING.md)
 
@@ -188,6 +177,7 @@ minecraft-survival-server-setup/
 │   ├── start.bat          tuned JVM flags + auto-restart
 │   └── backup.bat         safe live backups (+ backup.ps1)
 ├── tests/                 Mineflayer + RCON acceptance tests, load test
+├── screenshots/           MOTD, join, tab list, Discord
 ├── docs/
 │   ├── INSTALLATION.md
 │   ├── PERMISSIONS.md

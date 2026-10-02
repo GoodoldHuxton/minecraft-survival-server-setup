@@ -93,7 +93,9 @@ Wait for `[Chunky] Task finished` (about 5–10 minutes). Larger servers: raise 
 ## 6. Discord
 
 1. Create a bot at the [Discord Developer Portal](https://discord.com/developers/applications),
-   enable **Message Content Intent** and **Server Members Intent**, and invite it to your server.
+   enable **Message Content Intent** and **Server Members Intent**, and invite it to your server
+   with *Send Messages*, *Read Message History*, *Embed Links* and *Manage Webhooks* (add
+   *Manage Channels* if you want the channel topic to show the online player count).
 2. In `plugins\DiscordSRV\config.yml` set:
    ```yaml
    BotToken: "your bot token"

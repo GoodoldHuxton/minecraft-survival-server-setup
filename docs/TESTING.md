@@ -66,8 +66,12 @@ Persistence (part 2, after restart)
 3/3 passed
 ```
 
-**Not covered automatically:** the Discord bridge (needs a real bot token and channel) and the
-anti-cheat itself (bots are exempted from GrimAC, because their packets don't look like a real
+**Discord bridge, checked by hand** with a real bot in a test Discord server (it needs a token,
+so it isn't in the automated suite): the "server is online" message, join/leave embeds, in-game
+chat → Discord (`[VIP] TestVIP » hello from Minecraft!`) and Discord → game
+(`[Discord] Good Old Huxton > hey!`) all arrived. See `screenshots/discord.png`.
+
+**Not covered automatically:** the anti-cheat itself (bots are exempted from GrimAC, because their packets don't look like a real
 client's; GrimAC flagging them on sight during development was a nice side-check).
 
 ## Running the tests yourself
