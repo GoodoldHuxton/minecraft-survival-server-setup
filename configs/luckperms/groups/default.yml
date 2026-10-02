@@ -1,0 +1,38 @@
+name: default
+permissions:
+- essentials.afk
+- essentials.afk.auto
+- essentials.compass
+- essentials.delhome
+- essentials.depth
+- essentials.getpos
+- essentials.help
+- essentials.helpop
+- essentials.home
+- essentials.ignore
+- essentials.list
+- essentials.mail
+- essentials.mail.send
+- essentials.motd
+- essentials.msg
+- essentials.reply
+- essentials.rules
+- essentials.seen
+- essentials.sethome
+- essentials.sethome.multiple
+- essentials.spawn
+- essentials.tpa
+- essentials.tpacancel
+- essentials.tpaccept
+- essentials.tpahere
+- essentials.tpdeny
+- essentials.tpr
+- essentials.warp
+- essentials.warp.list
+- griefprevention.claims
+- griefprevention.createclaims
+- tab.scoreboard.toggle
+- weight.10
+prefixes:
+- '&8[&7Member&8] &7':
+    priority: 10

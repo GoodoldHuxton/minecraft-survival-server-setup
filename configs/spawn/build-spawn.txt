@@ -1,0 +1,65 @@
+# ==========================================================================
+#  Fulghen Survival - spawn builder
+#  A small, clean sky spawn at 0,150,0 built entirely from console commands.
+#  Paste into the server console (skip lines starting with #).
+# ==========================================================================
+forceload add -16 -16 16 16
+# Island body
+fill -14 147 -14 14 149 14 minecraft:deepslate_tiles
+fill -13 146 -13 13 146 13 minecraft:cobbled_deepslate
+fill -10 145 -10 10 145 10 minecraft:cobbled_deepslate
+# Floor
+fill -13 150 -13 13 150 13 minecraft:polished_deepslate
+fill -12 150 -12 12 150 12 minecraft:polished_andesite
+fill -2 150 -12 2 150 12 minecraft:stone_bricks
+fill -12 150 -2 12 150 2 minecraft:stone_bricks
+fill -1 150 -1 1 150 1 minecraft:chiseled_stone_bricks
+setblock 0 150 0 minecraft:sea_lantern
+setblock 0 150 -12 minecraft:sea_lantern
+setblock 0 150 12 minecraft:sea_lantern
+setblock -12 150 0 minecraft:sea_lantern
+setblock 12 150 0 minecraft:sea_lantern
+# Gardens in the four corners
+fill 4 150 4 11 150 11 minecraft:grass_block
+fill -11 150 4 -4 150 11 minecraft:grass_block
+fill 4 150 -11 11 150 -4 minecraft:grass_block
+fill -11 150 -11 -4 150 -4 minecraft:grass_block
+setblock 8 151 8 minecraft:flowering_azalea
+setblock -8 151 8 minecraft:flowering_azalea
+setblock 8 151 -8 minecraft:flowering_azalea
+setblock -8 151 -8 minecraft:flowering_azalea
+setblock 5 151 9 minecraft:poppy
+setblock -9 151 5 minecraft:cornflower
+setblock 9 151 -5 minecraft:oxeye_daisy
+setblock -5 151 -9 minecraft:allium
+setblock 10 151 6 minecraft:lily_of_the_valley
+setblock -6 151 10 minecraft:dandelion
+# Low wall around the edge
+fill -13 151 -13 13 151 13 minecraft:polished_deepslate_wall outline
+fill -12 151 -12 12 151 12 minecraft:air
+setblock 0 151 0 minecraft:air
+# Lantern posts
+fill 13 152 13 13 153 13 minecraft:polished_deepslate_wall
+fill -13 152 13 -13 153 13 minecraft:polished_deepslate_wall
+fill 13 152 -13 13 153 -13 minecraft:polished_deepslate_wall
+fill -13 152 -13 -13 153 -13 minecraft:polished_deepslate_wall
+setblock 13 154 13 minecraft:lantern
+setblock -13 154 13 minecraft:lantern
+setblock 13 154 -13 minecraft:lantern
+setblock -13 154 -13 minecraft:lantern
+# Holograms (vanilla text displays, no plugin needed)
+minecraft:kill @e[type=minecraft:text_display,distance=..30,x=0,y=150,z=0]
+summon minecraft:text_display 0 155 0 {billboard:"center",shadow:1b,background:0,text:{text:"✦ FULGHEN SURVIVAL ✦",color:"gold",bold:true,extra:[{text:"\nSurvival • Community • No P2W",color:"gray",bold:false}]},transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[1.6f,1.6f,1.6f]}}
+summon minecraft:text_display 0 153 -9 {billboard:"vertical",shadow:1b,text:{text:"Getting started",color:"yellow",bold:true,extra:[{text:"\n/rtp",color:"white",bold:false},{text:" explore the wild",color:"gray",bold:false},{text:"\n/sethome",color:"white",bold:false},{text:" save your base",color:"gray",bold:false},{text:"\nGolden shovel",color:"white",bold:false},{text:" claim your land",color:"gray",bold:false},{text:"\n/tpa",color:"white",bold:false},{text:" visit friends",color:"gray",bold:false}]}}
+summon minecraft:text_display 0 153 9 {billboard:"vertical",shadow:1b,text:{text:"Server rules",color:"yellow",bold:true,extra:[{text:"\nNo griefing • No cheats",color:"white",bold:false},{text:"\nBe respectful",color:"white",bold:false},{text:"\nEvery block is logged",color:"gray",bold:false,italic:true},{text:"\n/rules",color:"gold",bold:false}]}}
+# World spawn on the platform
+setworldspawn 0 151 0
+minecraft:gamerule respawn_radius 0
+forceload remove -16 -16 16 16
+# Nether hub: small obsidian platform at nether 0,64,0 (target of /warp nether)
+execute in minecraft:the_nether run forceload add -8 -8 8 8
+execute in minecraft:the_nether run fill -3 63 -3 3 63 3 minecraft:obsidian
+execute in minecraft:the_nether run fill -3 64 -3 3 68 3 minecraft:air
+execute in minecraft:the_nether run setblock 3 64 3 minecraft:lantern
+execute in minecraft:the_nether run setblock -3 64 -3 minecraft:lantern
+execute in minecraft:the_nether run forceload remove -8 -8 8 8

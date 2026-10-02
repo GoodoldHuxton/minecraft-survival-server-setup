@@ -1,0 +1,14 @@
+# Kits
+# The "starter" kit is handed out once, automatically, on a player's first join
+# (newbies.kit in config.yml). delay: -1 means it can only ever be claimed once.
+kits:
+  starter:
+    delay: -1
+    items:
+      - stonesword 1
+      - stonepickaxe 1
+      - stoneaxe 1
+      - stoneshovel 1
+      - bread 16
+      - torch 16
+      - goldenshovel 1 name:&eClaim_Shovel lore:&7Right-click_two_corners|&7to_protect_your_base

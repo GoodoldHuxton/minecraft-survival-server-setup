@@ -1,0 +1,24 @@
+name: admin
+permissions:
+- chunky.*
+- coreprotect.*
+- essentials.*
+- griefprevention.*
+- grim.*
+- tab.*
+- coreprotect.purge:
+    value: false
+- luckperms.group.info
+- luckperms.user.info
+- minecraft.command.effect
+- minecraft.command.gamemode
+- minecraft.command.give
+- minecraft.command.time
+- minecraft.command.weather
+- spark
+- weight.80
+parents:
+- moderator
+prefixes:
+- '&8[&cAdmin&8] &c':
+    priority: 80

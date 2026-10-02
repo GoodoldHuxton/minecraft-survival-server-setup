@@ -1,0 +1,17 @@
+name: vip
+permissions:
+- essentials.afk.message
+- essentials.chat.color
+- essentials.chat.format
+- essentials.hat
+- essentials.joinfullserver
+- essentials.nick
+- essentials.nick.color
+- essentials.sethome.multiple.vip
+- essentials.workbench
+- weight.20
+parents:
+- default
+prefixes:
+- '&8[&6VIP&8] &e':
+    priority: 20

@@ -1,0 +1,16 @@
+# Local test server (created by scripts/install.ps1 or download.ps1) - never commit
+server/
+backups/
+
+# Plugin jars are downloaded from official sources, never redistributed
+*.jar
+
+# Secrets
+.env
+server.properties
+eula.txt
+
+# Tests
+tests/node_modules/
+tests/.persist.json
+*.tmp.js

@@ -1,0 +1,148 @@
+# ==========================================================================
+#  Fulghen Survival - LuckPerms rank setup
+#  Paste these commands into the server console, top to bottom.
+#  (Lines starting with # are comments; skip them.)
+#
+#  Hierarchy:  owner > admin > moderator > vip > default (Member)
+#  Each rank inherits everything from the rank below it.
+#  VIP perks are cosmetic / quality-of-life only. No pay-to-win.
+# ==========================================================================
+
+# ---------- Groups, weights, inheritance ----------
+lp creategroup vip
+lp creategroup moderator
+lp creategroup admin
+lp creategroup owner
+lp group default setweight 10
+lp group vip setweight 20
+lp group moderator setweight 60
+lp group admin setweight 80
+lp group owner setweight 100
+lp group vip parent add default
+lp group moderator parent add vip
+lp group admin parent add moderator
+lp group owner parent add admin
+
+# ---------- Prefixes (chat, tab list, name tags) ----------
+lp group default meta setprefix 10 "&8[&7Member&8] &7"
+lp group vip meta setprefix 20 "&8[&6VIP&8] &e"
+lp group moderator meta setprefix 60 "&8[&9Moderator&8] &b"
+lp group admin meta setprefix 80 "&8[&cAdmin&8] &c"
+lp group owner meta setprefix 100 "&8[&4Owner&8] &4"
+
+# ---------- Member (default) ----------
+# Teleporting & homes
+lp group default permission set essentials.spawn true
+lp group default permission set essentials.home true
+lp group default permission set essentials.sethome true
+# "multiple" enables the sethome-multiple tiers in Essentials config (default: 2 homes)
+lp group default permission set essentials.sethome.multiple true
+lp group default permission set essentials.delhome true
+lp group default permission set essentials.tpa true
+lp group default permission set essentials.tpahere true
+lp group default permission set essentials.tpaccept true
+lp group default permission set essentials.tpdeny true
+lp group default permission set essentials.tpacancel true
+lp group default permission set essentials.warp true
+lp group default permission set essentials.warp.list true
+lp group default permission set essentials.tpr true
+# Communication
+lp group default permission set essentials.msg true
+lp group default permission set essentials.reply true
+lp group default permission set essentials.mail true
+lp group default permission set essentials.mail.send true
+lp group default permission set essentials.ignore true
+lp group default permission set essentials.afk true
+lp group default permission set essentials.afk.auto true
+# Info
+lp group default permission set essentials.help true
+lp group default permission set essentials.helpop true
+lp group default permission set essentials.rules true
+lp group default permission set essentials.motd true
+lp group default permission set essentials.list true
+lp group default permission set essentials.seen true
+lp group default permission set essentials.getpos true
+lp group default permission set essentials.compass true
+lp group default permission set essentials.depth true
+# Grief protection: members can claim land
+lp group default permission set griefprevention.createclaims true
+lp group default permission set griefprevention.claims true
+# Scoreboard toggle
+lp group default permission set tab.scoreboard.toggle true
+
+# ---------- VIP: cosmetic + quality of life, no gameplay advantage ----------
+lp group vip permission set essentials.sethome.multiple.vip true
+lp group vip permission set essentials.chat.color true
+lp group vip permission set essentials.chat.format true
+lp group vip permission set essentials.nick true
+lp group vip permission set essentials.nick.color true
+lp group vip permission set essentials.hat true
+lp group vip permission set essentials.workbench true
+lp group vip permission set essentials.afk.message true
+lp group vip permission set essentials.joinfullserver true
+
+# ---------- Moderator ----------
+lp group moderator permission set tab.staff true
+lp group moderator permission set essentials.sethome.multiple.staff true
+lp group moderator permission set essentials.kick true
+lp group moderator permission set essentials.kick.notify true
+lp group moderator permission set essentials.ban true
+lp group moderator permission set essentials.ban.notify true
+lp group moderator permission set essentials.tempban true
+lp group moderator permission set essentials.unban true
+lp group moderator permission set essentials.mute true
+lp group moderator permission set essentials.mute.notify true
+lp group moderator permission set essentials.vanish true
+lp group moderator permission set essentials.invsee true
+lp group moderator permission set essentials.socialspy true
+lp group moderator permission set essentials.tp true
+lp group moderator permission set essentials.tphere true
+lp group moderator permission set essentials.back true
+lp group moderator permission set essentials.seen.extra true
+lp group moderator permission set essentials.whois true
+lp group moderator permission set essentials.helpop.receive true
+lp group moderator permission set essentials.kick.exempt true
+lp group moderator permission set essentials.ban.exempt true
+lp group moderator permission set essentials.mute.exempt true
+# Block logs: inspect and look up, but rollback is for admins
+lp group moderator permission set coreprotect.inspect true
+lp group moderator permission set coreprotect.lookup true
+lp group moderator permission set coreprotect.lookup.block true
+lp group moderator permission set coreprotect.lookup.chat true
+lp group moderator permission set coreprotect.lookup.command true
+lp group moderator permission set coreprotect.lookup.container true
+lp group moderator permission set coreprotect.lookup.session true
+lp group moderator permission set coreprotect.lookup.sign true
+lp group moderator permission set coreprotect.lookup.item true
+# Anti-cheat alerts
+lp group moderator permission set grim.alerts true
+lp group moderator permission set grim.alerts.enable-on-join true
+# Claims
+lp group moderator permission set griefprevention.claimslistother true
+lp group moderator permission set griefprevention.seeclaimsize true
+
+# ---------- Admin ----------
+lp group admin permission set essentials.* true
+lp group admin permission set coreprotect.* true
+lp group admin permission set coreprotect.purge false
+lp group admin permission set griefprevention.* true
+lp group admin permission set grim.* true
+lp group admin permission set tab.* true
+lp group admin permission set spark true
+lp group admin permission set chunky.* true
+lp group admin permission set minecraft.command.gamemode true
+lp group admin permission set minecraft.command.time true
+lp group admin permission set minecraft.command.weather true
+lp group admin permission set minecraft.command.give true
+lp group admin permission set minecraft.command.effect true
+lp group admin permission set luckperms.user.info true
+lp group admin permission set luckperms.group.info true
+
+# ---------- Owner ----------
+lp group owner permission set * true
+# Explicit, because admin denies purge and an exact node beats the * wildcard
+lp group owner permission set coreprotect.purge true
+
+# ---------- Promote a player ----------
+#   lp user <name> parent set vip
+#   lp user <name> parent set moderator

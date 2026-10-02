@@ -1,0 +1,4 @@
+* text=auto
+# Windows scripts must keep CRLF line endings or cmd.exe misreads labels/goto
+*.bat text eol=crlf
+*.ps1 text eol=crlf

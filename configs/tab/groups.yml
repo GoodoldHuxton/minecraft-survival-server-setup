@@ -1,0 +1,8 @@
+# Name prefixes in the tab list and above heads come from LuckPerms (/lp group <group> meta setprefix).
+# Edit ranks in LuckPerms, not here; TAB picks them up automatically.
+_DEFAULT_:
+  tabprefix: "%luckperms-prefix%"
+  tagprefix: "%luckperms-prefix%"
+  customtabname: "%player%"
+  tabsuffix: "%luckperms-suffix%"
+  tagsuffix: "%luckperms-suffix%"

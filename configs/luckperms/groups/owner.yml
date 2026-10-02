@@ -1,0 +1,10 @@
+name: owner
+permissions:
+- '*'
+- coreprotect.purge
+- weight.100
+parents:
+- admin
+prefixes:
+- '&8[&4Owner&8] &4':
+    priority: 100

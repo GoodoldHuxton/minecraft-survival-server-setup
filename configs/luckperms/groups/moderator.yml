@@ -1,0 +1,43 @@
+name: moderator
+permissions:
+- coreprotect.inspect
+- coreprotect.lookup
+- coreprotect.lookup.block
+- coreprotect.lookup.chat
+- coreprotect.lookup.command
+- coreprotect.lookup.container
+- coreprotect.lookup.item
+- coreprotect.lookup.session
+- coreprotect.lookup.sign
+- essentials.back
+- essentials.ban
+- essentials.ban.exempt
+- essentials.ban.notify
+- essentials.helpop.receive
+- essentials.invsee
+- essentials.kick
+- essentials.kick.exempt
+- essentials.kick.notify
+- essentials.mute
+- essentials.mute.exempt
+- essentials.mute.notify
+- essentials.seen.extra
+- essentials.sethome.multiple.staff
+- essentials.socialspy
+- essentials.tempban
+- essentials.tp
+- essentials.tphere
+- essentials.unban
+- essentials.vanish
+- essentials.whois
+- griefprevention.claimslistother
+- griefprevention.seeclaimsize
+- grim.alerts
+- grim.alerts.enable-on-join
+- tab.staff
+- weight.60
+parents:
+- vip
+prefixes:
+- '&8[&9Moderator&8] &b':
+    priority: 60

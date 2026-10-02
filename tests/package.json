@@ -1,0 +1,19 @@
+{
+  "name": "fulghen-survival-tests",
+  "version": "1.0.0",
+  "description": "End-to-end tests for the Fulghen Survival server setup (Mineflayer bots + RCON)",
+  "scripts": {
+    "test": "node run-tests.js ../server",
+    "test:after-restart": "node run-tests.js ../server --after-restart",
+    "setup-world": "node setup-world.js ../server",
+    "load-test": "node load-test.js ../server 5 120"
+  },
+  "author": "GoodoldHuxton",
+  "license": "MIT",
+  "dependencies": {
+    "minecraft-protocol": "^1.68.0",
+    "mineflayer": "^4.39.0",
+    "vec3": "^0.2.0"
+  },
+  "private": true
+}
