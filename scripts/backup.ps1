@@ -10,7 +10,10 @@
 #>
 param(
     [string]$ServerDir = ".",
-    [int]$Keep = 14
+    [int]$Keep = 14,
+    # Where the zips go. Keep it outside cloud-synced folders (OneDrive, Dropbox): a 1 GB zip
+    # a day eats the quota and the sync client can lock files.
+    [string]$BackupDir = "backups"
 )
 
 $ErrorActionPreference = "Stop"
@@ -76,7 +79,7 @@ if ($props['enable-rcon'] -eq 'true' -and $props['rcon.password']) {
 
 # ---------- copy to staging, then zip ----------
 $stamp = Get-Date -Format "yyyy-MM-dd_HH-mm"
-New-Item -ItemType Directory -Force backups | Out-Null
+New-Item -ItemType Directory -Force $BackupDir | Out-Null
 $staging = Join-Path $env:TEMP "fulghen-backup-$stamp"
 New-Item -ItemType Directory -Force $staging | Out-Null
 
@@ -88,7 +91,9 @@ try {
         if (-not (Test-Path $item)) { continue }
         if ((Get-Item $item).PSIsContainer) {
             # /XF *.jar: plugin jars are re-downloadable; skip session.lock (held by the server)
-            robocopy $item (Join-Path $staging $item) /E /R:2 /W:1 /NFL /NDL /NJH /NJS /NP /XF *.jar session.lock | Out-Null
+            # and live H2 databases (*.mv.db), which are locked while the server runs and can't
+            # be copied consistently (e.g. Sonar's verified-players cache; players just re-verify)
+            robocopy $item (Join-Path $staging $item) /E /R:2 /W:1 /NFL /NDL /NJH /NJS /NP /XF *.jar session.lock *.mv.db | Out-Null
             if ($LASTEXITCODE -ge 8) { throw "robocopy failed for $item ($LASTEXITCODE)" }
         } else {
             Copy-Item $item $staging
@@ -102,17 +107,17 @@ try {
     }
 }
 
-$zip = Join-Path (Resolve-Path backups) "backup-$stamp.zip"
+$zip = Join-Path (Resolve-Path $BackupDir) "backup-$stamp.zip"
 # Windows' own bsdtar (not a Git/MSYS tar that may be first on PATH)
 & "$env:SystemRoot\System32\tar.exe" -a -c -f $zip -C $staging .
 if ($LASTEXITCODE -ne 0) { throw "Creating zip failed" }
 Remove-Item $staging -Recurse -Force
 
 $sizeMb = [math]::Round((Get-Item $zip).Length / 1MB, 1)
-Write-Host "Backup created: backups\backup-$stamp.zip ($sizeMb MB)"
+Write-Host "Backup created: $zip ($sizeMb MB)"
 
 # ---------- rotation ----------
-Get-ChildItem backups -Filter "backup-*.zip" | Sort-Object LastWriteTime -Descending |
+Get-ChildItem $BackupDir -Filter "backup-*.zip" | Sort-Object LastWriteTime -Descending |
     Select-Object -Skip $Keep | ForEach-Object {
         Remove-Item $_.FullName
         Write-Host "Removed old backup: $($_.Name)"
